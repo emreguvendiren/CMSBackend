@@ -11,7 +11,7 @@ import com.CMSBackend.CMS.dto.ResultDto;
 @RequestMapping("/test")
 @CrossOrigin
 public class TestController {
-	
+	 
 	@GetMapping("/hello")
 	public ResultDto helloWorld() {
 		return new ResultDto(true,200,"Hello World");
