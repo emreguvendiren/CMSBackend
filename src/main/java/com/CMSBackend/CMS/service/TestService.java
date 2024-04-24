@@ -1,5 +1,7 @@
 package com.CMSBackend.CMS.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,10 @@ public class TestService {
 			User user = new User();
 			user.setUserName(Username);
 			user.setPassword(Password);
+			
+			
+			
+			//List<User> users = userRepository.findUserByName(Username);
 			userRepository.save(user);
 			return new ResultDto(true, 200, "Kayit Basarili");
 		} catch (Exception e) {
