@@ -15,14 +15,14 @@ public class TestService {
 	@Autowired
 	private UserRepository userRepository;
 	
+	
 	public ResultDto createUser(String Username,String Password) {
 		try {
 			User user = new User();
+			
 			user.setUserName(Username);
 			user.setPassword(Password);
-			
-			
-			
+
 			//List<User> users = userRepository.findUserByName(Username);
 			userRepository.save(user);
 			return new ResultDto(true, 200, "Kayit Basarili");
