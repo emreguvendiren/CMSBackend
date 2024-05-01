@@ -36,6 +36,7 @@ public class SecurityConfig {
 							.requestMatchers("/auth/**","/public/**").permitAll()
 							.requestMatchers("/admin/**").hasAnyAuthority("ADMIN")
 							.requestMatchers("/user/**").hasAnyAuthority("USER")
+							.requestMatchers("/category/createCategory").hasAnyAuthority("ADMIN")
 							.anyRequest().authenticated()
 							)
 							.sessionManagement(manager->manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
