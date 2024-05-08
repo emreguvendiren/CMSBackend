@@ -20,7 +20,7 @@ public class CategoryService {
 			category.setName(name);
 			
 			categoryRepository.save(category);
-			return new ResultDto(true, 200, "Category Addes Successfully");
+			return new ResultDto(true, 200, "Category Added Successfully");
 		} catch (Exception e) {
 			
 			return new ResultDto(true, 500, "ERROR!!!");
