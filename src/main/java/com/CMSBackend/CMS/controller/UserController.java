@@ -3,7 +3,6 @@ package com.CMSBackend.CMS.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,30 +12,29 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.CMSBackend.CMS.dto.ReqRes;
 import com.CMSBackend.CMS.dto.ResultDto;
+import com.CMSBackend.CMS.model.User;
 import com.CMSBackend.CMS.service.AuthService;
+import com.CMSBackend.CMS.service.UserDetailsService;
+import com.CMSBackend.CMS.service.UserService;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/user")
 @CrossOrigin
-public class AuthController {
+public class UserController {
 
+	@Autowired
+	private UserService userService;
+	
 	@Autowired
 	private AuthService authService;
 	
-	@PostMapping("/signup")
-	public ResultDto signUp(@RequestBody ReqRes signUpRequest) {
-		
-		return authService.signUp(signUpRequest);		
-	}
-	@PostMapping("/signin")
-	public ResultDto signIn(@RequestBody ReqRes signInRequest) {
 	
-		return authService.signIn(signInRequest);		
+	@GetMapping("/getAllUsers")
+	public Iterable<User> getAllUsers(){
+		return userService.getAllUser();
 	}
-	@PostMapping("/refresh")
-	public ResultDto refresh(@RequestBody ReqRes refreshRequest) {
-	
-		return authService.refreshToken(refreshRequest);		
+	@PostMapping("/AddUser")
+	public ResultDto addUSer(@RequestBody ReqRes user) {
+		return authService.signUp(user);
 	}
-	
 }

@@ -15,16 +15,25 @@ public class TableService {
 	private TableRepository tableRepository;
 	
 	public ResultDto CreateTable(String tableName) {
-		try {
-			Table table = new Table();
-				table.setTableName(tableName);
-			
-			tableRepository.save(table);
-			return new ResultDto(true, 200, "Table Added Successfully");
-		} catch (Exception e) {
-			
-			return new ResultDto(true, 500, "ERROR!!!");
-			// TODO: handle exception
+		if(tableName.isEmpty() || tableName.isBlank()) {
+			return new ResultDto(true, 500, "The table name is not to be empty.");
+		}
+		else {
+			try {
+				Table searchTable = tableRepository.findByName(tableName.toLowerCase());
+				if(searchTable != null) {
+					return new ResultDto(true, 500, "The table name is existing");
+				}
+				Table table = new Table();
+					table.setTableName(tableName);
+				
+				tableRepository.save(table);
+				return new ResultDto(true, 200, "Table Added Successfully");
+			} catch (Exception e) {
+				
+				return new ResultDto(true, 500, "ERROR!!!");
+				// TODO: handle exception
+			}
 		}
 	}
 	
