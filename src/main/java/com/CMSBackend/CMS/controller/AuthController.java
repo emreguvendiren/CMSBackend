@@ -20,23 +20,25 @@ import com.CMSBackend.CMS.service.AuthService;
 @CrossOrigin
 public class AuthController {
 
-	@Autowired
-	private AuthService authService;
-	
-	@PostMapping("/signup")
-	public ResultDto signUp(@RequestBody ReqRes signUpRequest) {
-		
-		return authService.signUp(signUpRequest);		
-	}
-	@PostMapping("/signin")
-	public ResultDto signIn(@RequestBody ReqRes signInRequest) {
-	
-		return authService.signIn(signInRequest);		
-	}
-	@PostMapping("/refresh")
-	public ResultDto refresh(@RequestBody ReqRes refreshRequest) {
-	
-		return authService.refreshToken(refreshRequest);		
-	}
-	
+    @Autowired
+    private AuthService authService;
+
+    @PostMapping("/signup")
+    public ResultDto signUp(@RequestBody ReqRes signUpRequest) {
+
+        return authService.signUp(signUpRequest);
+    }
+
+    @PostMapping("/signin")
+    public ResultDto signIn(@RequestBody ReqRes signInRequest) {
+
+        return authService.signIn(signInRequest);
+    }
+
+    @PostMapping("/refresh")
+    public ResultDto refresh(@RequestBody ReqRes refreshRequest) {
+
+        return authService.refreshToken(refreshRequest);
+    }
+
 }

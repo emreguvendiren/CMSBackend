@@ -5,7 +5,16 @@ public class ResultDto {
 	public Object result;
 	public int status;
 	public String message;
-	
+
+	public Object getAlternativeResult() {
+		return alternativeResult;
+	}
+
+	public void setAlternativeResult(Object alternativeResult) {
+		this.alternativeResult = alternativeResult;
+	}
+
+	public Object alternativeResult;
 	
 	public ResultDto(Object result,int status,String message) {
 		this.result = result;

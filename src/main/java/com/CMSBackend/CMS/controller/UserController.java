@@ -24,11 +24,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	
 	@Autowired
 	private AuthService authService;
-	
-	
+
 	@GetMapping("/getAllUsers")
 	public Iterable<User> getAllUsers(){
 		return userService.getAllUser();
@@ -37,4 +35,12 @@ public class UserController {
 	public ResultDto addUSer(@RequestBody ReqRes user) {
 		return authService.signUp(user);
 	}
+	@PostMapping("/UpdateUser")
+	public ResultDto updateUSer(@RequestBody ReqRes user) {
+		return authService.update(user);
+	}
+	@PostMapping("/DeleteUser")
+	public ResultDto deleteUSer(@RequestBody ReqRes user) {
+		return authService.delete(user);
+	} 
 }

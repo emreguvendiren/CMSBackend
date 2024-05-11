@@ -26,7 +26,43 @@ public class AuthService {
 	
 	@Autowired
 	private AuthenticationManager authenticationManager;
-	
+
+	public ResultDto update(ReqRes reqRes) {
+		ResultDto resp;
+		try {
+			User user = repository.findByUserName(reqRes.getUsername());
+
+			if(!reqRes.getPassword().equalsIgnoreCase("")){
+				user.setPassword(encoder.encode(reqRes.getPassword()));
+			}
+			user.setRole(reqRes.getRole());
+			repository.save(user);
+			return new ResultDto(user, 200, "Guncelleme Basarili");
+		} catch (Exception e) {
+			return new ResultDto(false, 500, "Guncelleme Basarisiz");
+
+		}
+	}
+
+	public ResultDto delete(ReqRes reqRes) {
+		ResultDto resp;
+		try {
+			User user = repository.findByUserName(reqRes.getUsername());
+			if(user!= null){
+				repository.delete(user);
+			}
+			else{
+				return new ResultDto(false, 500, "Kullanici bulunamadi");
+
+			}
+			repository.save(user);
+			return new ResultDto(user, 200, "Silme Islemi Basarili");
+		} catch (Exception e) {
+			return new ResultDto(false, 500, "Silme Islemi Basarisiz");
+
+		}
+	}
+
 	public ResultDto signUp(ReqRes reqRes) {
 		ResultDto resp;
 		try {
@@ -52,7 +88,9 @@ public class AuthService {
 			else {
 				var jwt = jwtUtils.generateToken(user);
 				var refreshToken = jwtUtils.generateRefreshToken(new HashMap<>(), user);
-				return new ResultDto(jwt, 200, "Giris Basarili");
+				ResultDto dto = new ResultDto(jwt, 200, "Giris Basarili");
+					dto.setAlternativeResult(user.getRole());
+				return dto;
 						
 			}
 		} catch (Exception e) {
