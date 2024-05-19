@@ -94,7 +94,7 @@ public class AuthService {
 						
 			}
 		} catch (Exception e) {
-			return new ResultDto(false, 500, "Giris Yapilirken Hata Olustu");
+			return new ResultDto(false, 500, "Kullanıcı adı veya şifre yanlış.");
 		}
 	}
 	
