@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
+import java.util.Base64;
+
 @Entity
 public class Product extends BaseEntity{
 	
@@ -18,11 +20,19 @@ public class Product extends BaseEntity{
 	private Boolean enabled;
 	
 	@ManyToOne
-	@JoinColumn(name = "category_id")
+	@JoinColumn(name = "category")
 	private Category category;
 	
 	public String getName() {
 		return name;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 	public void setName(String name) {

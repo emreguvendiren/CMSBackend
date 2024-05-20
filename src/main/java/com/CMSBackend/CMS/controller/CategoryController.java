@@ -16,7 +16,12 @@ public class CategoryController {
 	
 	@Autowired
 	private CategoryService categoryService;
-	
+
+	@GetMapping("/getAllCategory")
+	public ResultDto GetAllCategory(){
+		return categoryService.GetAllCategory();
+	}
+
 	@GetMapping("/createCategory")
 	public ResultDto CreateCategory(String Name) {
 		return categoryService.CreateCategory(Name);

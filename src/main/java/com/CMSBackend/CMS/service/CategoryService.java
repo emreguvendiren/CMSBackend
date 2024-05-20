@@ -27,6 +27,20 @@ public class CategoryService {
 			// TODO: handle exception
 		}
 	}
+
+	public ResultDto GetAllCategory() {
+		try {
+
+			var tables = categoryRepository.findAll();
+
+			return new ResultDto(tables, 200, "Category Getted Successfully");
+
+
+
+		} catch (Exception e) {
+			return new ResultDto(true, 500, "ERROR!!!");
+		}
+	}
 	
 	
 }
