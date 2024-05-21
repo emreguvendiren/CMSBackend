@@ -20,6 +20,7 @@ public class ProductController {
 
     @PostMapping("/createProduct")
     public ResultDto createProduct(@RequestBody Product product,Long categoryId){
+    	
         return productService.createProduct(product,categoryId);
     }
 }

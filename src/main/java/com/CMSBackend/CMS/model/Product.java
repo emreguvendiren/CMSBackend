@@ -1,8 +1,11 @@
 package com.CMSBackend.CMS.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Transient;
 
 import java.util.Base64;
 
@@ -15,14 +18,21 @@ public class Product extends BaseEntity{
 	
 	private Double price;
 	
+	
+	@Column(columnDefinition = "LONGTEXT")
 	private String imageUrl;
 	
 	private Boolean enabled;
+	
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "category")
 	private Category category;
 	
+	
+	
+
 	public String getName() {
 		return name;
 	}
@@ -54,6 +64,9 @@ public class Product extends BaseEntity{
 	public void setPrice(Double price) {
 		this.price = price;
 	}
+
+	
+
 
 	public String getImageUrl() {
 		return imageUrl;

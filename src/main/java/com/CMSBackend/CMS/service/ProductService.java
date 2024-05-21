@@ -8,6 +8,7 @@ import com.CMSBackend.CMS.respository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Base64;
 import java.util.Optional;
 
 @Service
@@ -37,6 +38,7 @@ public class ProductService {
             prod.setPrice(product.getPrice());
             prod.setEnabled(true);
             prod.setCategory(category);
+            prod.setImageUrl(product.getImageUrl());
 
             productRepository.save(prod);
             return new ResultDto(prod,200,"Success");
