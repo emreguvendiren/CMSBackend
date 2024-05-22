@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Base64;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -47,4 +48,14 @@ public class ProductService {
             return new ResultDto(null,500,"Something went wrong");
         }
     }
+
+	public ResultDto getProductsByCategory(Long categoryId) {
+        Category category = categoryRepository.findById(categoryId).get();
+
+		 List<Product> products = productRepository.findByCategoryId(category);
+	        if(products.size()>0){
+	            return new ResultDto(products,200,"Success");
+	        }
+	        return new ResultDto(null,500,"Something went wrong...");
+	}
 }

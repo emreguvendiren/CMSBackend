@@ -18,7 +18,6 @@ public class Product extends BaseEntity{
 	
 	private Double price;
 	
-	
 	@Column(columnDefinition = "LONGTEXT")
 	private String imageUrl;
 	

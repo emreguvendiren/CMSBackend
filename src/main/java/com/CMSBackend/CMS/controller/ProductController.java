@@ -23,4 +23,9 @@ public class ProductController {
     	
         return productService.createProduct(product,categoryId);
     }
+    
+    @GetMapping("getProductsByCategory")
+    public ResultDto getProductsByCategory(Long categoryId) {
+        return productService.getProductsByCategory(categoryId);
+    }
 }
