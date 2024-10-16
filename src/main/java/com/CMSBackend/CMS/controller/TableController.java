@@ -27,4 +27,10 @@ public class TableController {
 	public ResultDto GetAllTable() {
 		return tableService.GetAllTable();
 	}
+	
+	@GetMapping("/getAllTableWithPrice")
+	public ResultDto GetAllTableWithPrice() {
+		return tableService.GetAllTableWithPrice();
+	}
+	
 }

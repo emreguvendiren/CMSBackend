@@ -1,5 +1,9 @@
 package com.CMSBackend.CMS.service;
 
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +17,8 @@ public class TableService {
 
 	@Autowired
 	private TableRepository tableRepository;
+	
+
 	
 	public ResultDto CreateTable(String tableName) {
 		if(tableName.isEmpty() || tableName.isBlank()) {
@@ -34,6 +40,32 @@ public class TableService {
 				return new ResultDto(true, 500, "ERROR!!!");
 				// TODO: handle exception
 			}
+		}
+	}
+	
+	public ResultDto GetAllTableWithPrice() {
+		try {
+			List<Object[]> tableObjects = tableRepository.getTablesWithTotalPrice();
+			if (tableObjects.isEmpty()) {
+                return new ResultDto(true, 404, "No tables found.");
+            }
+			List<Table> tables = new ArrayList<>();
+			for(Object[] obj : tableObjects) {
+				Long tableId = ((Long) obj[0]).longValue();
+				Double totalPrice = (Double) obj[2];
+				
+				Table table = tableRepository.findById(tableId).orElse(null);
+				
+				if(table!=null) {
+					table.setPrice(totalPrice);
+					tables.add(table);
+				}
+			}
+			
+            
+            return new ResultDto(tables, 200, "Tables retrieved successfully.");
+		} catch (Exception e) {
+            return new ResultDto(true, 500, "An error occurred while retrieving tables.");
 		}
 	}
 	

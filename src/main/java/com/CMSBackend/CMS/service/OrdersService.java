@@ -50,4 +50,8 @@ public class OrdersService {
         }
 
     }
+    
+    public List<Orders> GetOrdersByTableId(Long tableId) {
+    	return ordersRepository.findOrdersByTableId(tableId, OrderStatus.Tamamlandı);
+    }
 }
