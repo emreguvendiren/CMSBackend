@@ -29,6 +29,7 @@ public class OrdersService {
 
         try {
             Table table = tableRepository.findById(orderDtos.get(0).getTableId()).get();
+            ordersRepository.deleteOrdersByTableId(table.getId());
             for(OrderDto dto : orderDtos){
 
                 Product product = productRepository.findById(dto.getProductId()).get();
